@@ -1,5 +1,6 @@
 let numeroSecreto = 0;
 let intentos = 0;
+let listaNumeroSorteados = []; //Almacena los numeros para saber si ya han sido sorteados.
 
 function asignarTextoElemento(elemento, texto){
     let elementoHTML = document.querySelector(elemento);
@@ -42,6 +43,15 @@ function condicionesIniciales(){
     intentos = 1;
 }
 function generarNumeroSecreto(){
-    return Math.floor(Math.random()*10)+1;
+    let numeroGenerado = Math.floor(Math.random()*10)+1;
+    //Si el numero generado esta incluido en la lista
+    if(listaNumeroSorteados.includes(numeroGenerado)){
+        return generarNumeroSecreto();
+    }else{
+        listaNumeroSorteados.push(numeroGenerado);
+        return numeroGenerado;
+    }
+
+    
 };
 condicionesIniciales();
