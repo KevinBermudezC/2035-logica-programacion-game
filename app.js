@@ -10,7 +10,7 @@ function asignarTextoElemento(elemento, texto){
 
 function verificarIntento(){
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
-    console.log(intentos)
+    //console.log(intentos)
     if(numeroDeUsuario === numeroSecreto){
         asignarTextoElemento('p',`¡Lo lograste!, acertaste el numero en ${intentos} ${(intentos == 1) ? 'vez' : 'veces' }`);
         document.getElementById('reiniciar').removeAttribute('disabled');
@@ -44,10 +44,13 @@ function condicionesIniciales(){
 }
 function generarNumeroSecreto(){
     let numeroGenerado = Math.floor(Math.random()*10)+1;
+    console.log(numeroGenerado);
+    console.log(listaNumeroSorteados);
     //Si el numero generado esta incluido en la lista
     if(listaNumeroSorteados.includes(numeroGenerado)){
         return generarNumeroSecreto();
     }else{
+        listaNumeroSorteados.pop();
         listaNumeroSorteados.push(numeroGenerado);
         return numeroGenerado;
     }
